@@ -8,13 +8,13 @@ export type D3DebugResponse = {
   v1: D3CallStack;
   v2: D3CallStack;
 };
-
+console.log("response")
 export const startDebug = async (
   url1: string,
   url2: string,
   userId: string,
 ) => {
-  const response = await fetch("/api/test", {
+  const response = await fetch("api/debug", {
     method: "POST",
     body: JSON.stringify({
       userId: userId,
@@ -22,9 +22,9 @@ export const startDebug = async (
       modified: url2,
     }),
   });
-
+  console.log(response)
   if (!response || !response.ok) {
     throw new Error("invalid data fetch");
   }
-  // const result: D3DebugResponse = await response.json();
+  const result: D3DebugResponse = await response.json();
 };
