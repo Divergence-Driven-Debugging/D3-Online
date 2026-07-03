@@ -1,3 +1,3 @@
 export const API_CONFIG = {
-  url: "http://localhost:1312/",
+  url: "https://rmod-xp.lille.inria.fr/d3/",
 };

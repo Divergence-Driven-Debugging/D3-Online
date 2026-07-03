@@ -5,6 +5,8 @@ import DebugIcon from "../../assets/icons/bug.svg?react";
 import CheckIcon from "../../assets/icons/check.svg?react";
 import ErrorIcon from "../../assets/icons/error.svg?react";
 import { useExperimentContext } from "../../hooks/useExperimentContext";
+import { useDivergence } from "../../hooks/useDivergence";
+import { useStacks } from "../../hooks/useStacks";
 import { Spinner } from "../../components/spinner/Spinner";
 import { startDebug } from "../../services/api";
 
@@ -14,6 +16,8 @@ const ExpStartLayout = () => {
   const [userIDInput, setUserIDInput] = useState<string>("");
 
   const { setUrl1, setUrl2, setUserID, clearAll } = useExperimentContext();
+  const { setFlowDivergences, setStateDivergences } = useDivergence();
+  const { setOriginalStack, setModifiedStack } = useStacks();
   const [fetching, setFetching] = useState<boolean>(false);
 
   const handleStartDebug = async (e: React.SyntheticEvent) => {
@@ -26,7 +30,12 @@ const ExpStartLayout = () => {
       return;
 
     setFetching(true);
-    await startDebug(url1Input, url2Input, userIDInput);
+    const data = await startDebug(url1Input, url2Input, userIDInput);
+    setFlowDivergences(data.flowDivergences);
+    setStateDivergences(data.stateDivergences);
+    setOriginalStack(data.v1);
+    setModifiedStack(data.v2);
+
     setFetching(false);
     setUrl1(url1Input);
     setUrl2(url2Input);
