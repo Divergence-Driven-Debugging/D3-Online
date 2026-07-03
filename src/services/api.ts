@@ -20,11 +20,10 @@ export const startDebug = async (
     },
     body: JSON.stringify({
       userId,
-      url1,
-      url2,
+      origin: url1,
+      modified: url2,
     }),
   });
-  console.log(response)
   if (!response.ok) {
     throw new Error("invalid data fetch");
   }

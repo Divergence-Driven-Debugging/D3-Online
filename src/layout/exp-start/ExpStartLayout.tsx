@@ -31,6 +31,7 @@ const ExpStartLayout = () => {
 
     setFetching(true);
     const data = await startDebug(url1Input, url2Input, userIDInput);
+    console.log("[D3] réponse serveur:", data); // TEMP debug: vérifier la forme du JSON
     setFlowDivergences(data.flowDivergences);
     setStateDivergences(data.stateDivergences);
     setOriginalStack(data.v1);
