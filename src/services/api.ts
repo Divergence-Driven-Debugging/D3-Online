@@ -31,3 +31,19 @@ export const startDebug = async (
   const result: D3DebugResponse = await response.json();
   return result;
 };
+
+export type D3Version = "reference" | "modified";
+
+// faut changer la route mais le serveur me fais chier
+export const getFrameObjects = async (
+  frameId: number,
+  version: D3Version,
+) => {
+  const response = await fetch(
+    `/api/objects?frame=${frameId}&version=${version}`,
+  );
+  if (!response.ok) {
+    throw new Error("alors la bonne chance aya");
+  }
+  return await response.json();
+};

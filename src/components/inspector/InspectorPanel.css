@@ -1,0 +1,51 @@
+.stack-inspectors {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.inspector-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 180px;
+  border: 1px solid var(--color-var-separator);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.inspector-panel-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 10px 16px;
+  font-size: 17px;
+  font-weight: 700;
+  border-bottom: 3px solid var(--color-var-separator);
+}
+
+.inspector-panel-title {
+  text-transform: capitalize;
+}
+
+.inspector-panel-frame {
+  opacity: 0.7;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.inspector-panel-body {
+  flex: 1;
+  min-height: 0;
+}
+
+.inspector-panel-status {
+  padding: 1.1rem 1.3rem;
+  opacity: 0.75;
+  font-size: 15px;
+  font-style: italic;
+}
+
+.inspector-panel-status.error {
+  color: var(--color-deletion, #e5484d);
+  font-style: normal;
+}

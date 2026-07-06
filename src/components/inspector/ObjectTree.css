@@ -1,0 +1,86 @@
+.var-tree {
+  font-family: "Roboto Mono", "Menlo", monospace;
+  font-size: 16px;
+  line-height: 1.9;
+  max-height: 45vh;
+  overflow: auto;
+  user-select: none;
+}
+
+/* séparateur entre chaque objet de premier niveau */
+.var-tree > .var-node + .var-node {
+  border-top: 1px solid var(--color-var-separator);
+}
+
+.var-tree > .var-node {
+  padding: 3px 0;
+}
+
+.var-row {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 12px;
+  white-space: nowrap;
+  border-radius: 4px;
+}
+
+.var-row.expandable {
+  cursor: pointer;
+}
+
+.var-row.expandable:hover {
+  background: var(--color-var-hover);
+}
+
+.var-caret {
+  display: inline-block;
+  width: 1.1em;
+  flex: 0 0 1.1em;
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+.var-name {
+  color: var(--color-var-name);
+  font-weight: 600;
+}
+
+.var-colon {
+  opacity: 0.6;
+  margin-right: 7px;
+}
+
+.var-value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+}
+
+/* type / class name (objets, tableaux, références) */
+.var-value.type {
+  color: var(--color-var-type);
+  font-weight: 600;
+}
+
+/* primitifs */
+.var-value.string {
+  color: var(--color-var-string);
+}
+.var-value.number {
+  color: var(--color-var-number);
+}
+.var-value.boolean {
+  color: var(--color-var-boolean);
+}
+.var-value.null {
+  color: var(--color-var-null);
+  font-style: italic;
+}
+
+.var-empty {
+  padding: 1rem;
+  opacity: 0.7;
+  font-style: italic;
+  font-size: 15px;
+}

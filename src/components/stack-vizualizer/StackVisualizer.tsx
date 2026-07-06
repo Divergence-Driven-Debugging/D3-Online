@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import FrameTable from "../frame-table/FrameTable";
 import "./StackVisualizer.css";
 import ArrowBackIcon from "../../assets/icons/arrow_back.svg?react";
@@ -7,7 +8,9 @@ import SyncIcon from "../../assets/icons/arrows_sync.svg?react";
 import type { D3FlowDivergence } from "../../models/divergence";
 import MonacoDiffEditor from "../monaco/MonacoDiffEditor";
 import KeyboardNavigation from "../keyboard-navigation/KeyboardNavigation";
+import InspectorPanel from "../inspector/InspectorPanel";
 import { useStacks } from "../../hooks/useStacks";
+import { useInspector } from "../../hooks/useInspector";
 
 const StackVisualizer = () => {
   const {
@@ -21,6 +24,20 @@ const StackVisualizer = () => {
     stepBackSync,
     restart,
   } = useStacks();
+
+  const { reference, modified, inspectFrame } = useInspector();
+
+ 
+  const referenceFrameId = originalStack.frames[originalPosition]?.id;
+  const modifiedFrameId = modifiedStack.frames[modifiedPosition]?.id;
+
+  useEffect(() => {
+    if (referenceFrameId != null) inspectFrame(referenceFrameId, "reference");
+  }, [referenceFrameId, inspectFrame]);
+
+  useEffect(() => {
+    if (modifiedFrameId != null) inspectFrame(modifiedFrameId, "modified");
+  }, [modifiedFrameId, inspectFrame]);
 
   return (
     <>
@@ -79,6 +96,19 @@ const StackVisualizer = () => {
             />
           </div>
         </KeyboardNavigation>
+      </div>
+
+      <div className="stack-inspectors container">
+        <InspectorPanel
+          title="reference"
+          color="var(--color-deletion)"
+          state={reference}
+        />
+        <InspectorPanel
+          title="modified"
+          color="var(--color-addition)"
+          state={modified}
+        />
       </div>
 
       <div className="stack-editor container">

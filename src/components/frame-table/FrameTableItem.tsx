@@ -20,6 +20,8 @@ const FrameTableItem = forwardRef<HTMLDivElement, FrameTableItemProps>(
     const { isFlowDivergence, selectedDivergence } = useDivergence();
     const { updateTablesPositions } = useStacks();
 
+    const handleClick = () => updateTablesPositions(index);
+
     /**
      * Return true if the specified frame should have a color indicator as divergence prefix:
      * - true if the selected divergence is a StateDivergence and its position is the same as the frame's position.
@@ -52,7 +54,7 @@ const FrameTableItem = forwardRef<HTMLDivElement, FrameTableItemProps>(
       <div
         ref={ref}
         className="frame-table-item-wrapper"
-        onClick={() => updateTablesPositions(index)}
+        onClick={handleClick}
       >
         {hasPrefix && (
           <div
@@ -60,7 +62,9 @@ const FrameTableItem = forwardRef<HTMLDivElement, FrameTableItemProps>(
             style={{ backgroundColor: prefixColor }}
           />
         )}
-        <div className={"frame-table-item" + (selected ? " selected" : "")}>
+        <div
+          className={"frame-table-item" + (selected ? " selected" : "")}
+        >
           <span>{index}</span>
           <span>{frame.displayName}</span>
         </div>

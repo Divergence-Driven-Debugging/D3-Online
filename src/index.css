@@ -14,6 +14,16 @@
   --color-font: black;
 
   --font: "Roboto", sans-serif;
+
+
+  --color-var-name: #001080;
+  --color-var-type: #0f6f6a;
+  --color-var-string: #a31515;
+  --color-var-number: #0b7d3e;
+  --color-var-boolean: #0000cc;
+  --color-var-null: #5a5a5a;
+  --color-var-separator: #00000030;
+  --color-var-hover: #00000012;
 }
 
 :root.dark {
@@ -22,6 +32,16 @@
   --color-background-selected: #2a2a2a;
 
   --color-font: white;
+
+  /* Inspecteur (mode sombre : palette claire type VS Code Dark) */
+  --color-var-name: #9cdcfe;
+  --color-var-type: #4ec9b0;
+  --color-var-string: #ce9178;
+  --color-var-number: #b5cea8;
+  --color-var-boolean: #569cd6;
+  --color-var-null: #a0a0a0;
+  --color-var-separator: #ffffff26;
+  --color-var-hover: #ffffff14;
 }
 
 body {

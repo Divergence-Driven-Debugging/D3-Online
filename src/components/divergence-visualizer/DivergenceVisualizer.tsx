@@ -76,7 +76,6 @@ const DivergenceVisualizer: React.FC<DivergenceVisualizerProps> = ({
       }
     }
   };
-
   return (
     <ScrollWrapper
       dependsOn={selectedDivergence}
@@ -90,7 +89,7 @@ const DivergenceVisualizer: React.FC<DivergenceVisualizerProps> = ({
               divergences.map((d) => (
                 <DivergenceItem
                   key={`divergence-${d.id}`}
-                  ref={selectedDivergence == d ? selectedRef : null}
+                  ref={selectedDivergence == d ? selectedRef : null}                  
                   divergence={d}
                 />
               ))}
@@ -99,6 +98,7 @@ const DivergenceVisualizer: React.FC<DivergenceVisualizerProps> = ({
       </KeyboardNavigation>
     </ScrollWrapper>
   );
+  
 };
 
 export default DivergenceVisualizer;
