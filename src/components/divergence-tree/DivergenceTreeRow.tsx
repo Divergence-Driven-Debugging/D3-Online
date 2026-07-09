@@ -5,6 +5,7 @@ import DivergenceNode from "./nodes/DivergenceNode";
 import TreeNode from "./nodes/TreeNode";
 import MonacoDiffEditor from "../monaco/MonacoDiffEditor";
 import type { TreeRow } from "../../models/tree";
+import { toZeroIndexed } from "../../models/stack";
 import { useDivergenceTree } from "../../hooks/useDivergenceTree";
 
 interface DivergenceTreeRowProps {
@@ -85,6 +86,10 @@ const DivergenceTreeRow: React.FC<DivergenceTreeRowProps> = ({ row }) => {
           <MonacoDiffEditor
             original={frame?.sourceCode}
             modified={modifiedFrame?.sourceCode}
+            originalFile={frame?.fileName}
+            originalLine={toZeroIndexed(frame?.line)}
+            modifiedFile={modifiedFrame?.fileName}
+            modifiedLine={toZeroIndexed(modifiedFrame?.line)}
           />
         )}
       </div>

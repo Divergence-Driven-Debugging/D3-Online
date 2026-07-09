@@ -6,6 +6,7 @@ import ArrowForwardIcon from "../../assets/icons/arrow_forward.svg?react";
 import RestartIcon from "../../assets/icons/restart.svg?react";
 import SyncIcon from "../../assets/icons/arrows_sync.svg?react";
 import type { D3FlowDivergence } from "../../models/divergence";
+import { toZeroIndexed } from "../../models/stack";
 import MonacoDiffEditor from "../monaco/MonacoDiffEditor";
 import KeyboardNavigation from "../keyboard-navigation/KeyboardNavigation";
 import InspectorPanel from "../inspector/InspectorPanel";
@@ -115,6 +116,14 @@ const StackVisualizer = () => {
         <MonacoDiffEditor
           original={originalStack?.frames[originalPosition]?.sourceCode}
           modified={modifiedStack?.frames[modifiedPosition]?.sourceCode}
+          originalFile={originalStack?.frames[originalPosition]?.fileName}
+          originalLine={toZeroIndexed(
+            originalStack?.frames[originalPosition]?.line,
+          )}
+          modifiedFile={modifiedStack?.frames[modifiedPosition]?.fileName}
+          modifiedLine={toZeroIndexed(
+            modifiedStack?.frames[modifiedPosition]?.line,
+          )}
         />
       </div>
     </>

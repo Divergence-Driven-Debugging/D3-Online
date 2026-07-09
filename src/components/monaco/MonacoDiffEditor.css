@@ -1,0 +1,46 @@
+.diff-editor-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.symbol-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  font-size: 15px;
+  font-family: "Roboto Mono", "Menlo", monospace;
+  border-top: 1px solid var(--color-var-separator);
+}
+
+.symbol-banner-word {
+  color: var(--color-var-name);
+  font-weight: 600;
+}
+
+.symbol-banner-arrow {
+  opacity: 0.5;
+}
+
+.symbol-banner-kind {
+  font-weight: 700;
+  color: var(--color-var-type);
+  text-transform: capitalize;
+}
+
+.symbol-banner-kind.inconnu {
+  color: var(--color-var-null);
+  font-style: italic;
+}
+
+.lsp-banner {
+  padding: 8px 14px;
+  font-size: 15px;
+  font-family: "Roboto Mono", "Menlo", monospace;
+  border-top: 1px solid var(--color-var-separator);
+  opacity: 0.85;
+}
+
+.current-frame-line {
+  background-color: color-mix(in srgb, var(--color-addition) 18%, transparent);
+}

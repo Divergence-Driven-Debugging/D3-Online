@@ -8,7 +8,8 @@ import { useExperimentContext } from "../../hooks/useExperimentContext";
 import { useDivergence } from "../../hooks/useDivergence";
 import { useStacks } from "../../hooks/useStacks";
 import { Spinner } from "../../components/spinner/Spinner";
-import { startDebug } from "../../services/api";
+import { getCodebasePath, startDebug } from "../../services/api";
+import { startLspSession } from "../../services/lsp";
 
 const ExpStartLayout = () => {
   const [url1Input, setUrl1Input] = useState<string>("");
@@ -40,6 +41,16 @@ const ExpStartLayout = () => {
     setUrl1(url1Input);
     setUrl2(url2Input);
     setUserID(userIDInput);
+
+try {
+      const [referencePath, modifiedPath] = await Promise.all([
+        getCodebasePath("reference"),
+        getCodebasePath("modified"),
+      ]);
+      await startLspSession(referencePath, modifiedPath);
+    } catch (error) {
+      console.warn("Session LSP Erreur :", error);
+    }
   };
 
   const isValidUrl = (url: string) => {
